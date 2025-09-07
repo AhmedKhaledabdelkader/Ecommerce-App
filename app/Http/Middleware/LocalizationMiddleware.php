@@ -21,6 +21,10 @@ class LocalizationMiddleware
               
     $locale = $request->header('Accept-Language', 'en');
 
+    if (!in_array($locale, ['en', 'ar'])) {
+        $locale = 'en'; 
+    }
+
                 
     app()->setLocale($locale);
 

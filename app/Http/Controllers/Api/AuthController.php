@@ -38,7 +38,7 @@ class AuthController extends Controller
     return response()->json([
 
 
-        "message"=>"user added successfully to the system",
+        "message"=> __('user_created'),
 
         "user"=>$user,
 

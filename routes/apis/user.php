@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\SubcategoryController;
 
 
 
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register'])->middleware(["validate.user","localize"]);
 Route::post('/login', [AuthController::class, 'login']);
 
 

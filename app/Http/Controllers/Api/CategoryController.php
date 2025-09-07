@@ -49,10 +49,14 @@ class CategoryController extends Controller
 
 
 
-    public  function index(){
+    public  function index(Request $request){
 
 
-        $categories=Category::all();
+        $per_page=$request->query("per_page",4);
+
+
+
+        $categories=Category::paginate($per_page);
 
         return response()->json([
 

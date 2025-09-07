@@ -26,7 +26,8 @@ return Application::configure(basePath: dirname(__DIR__))
              'admin'=>\App\Http\Middleware\AdminMiddleware::class,
              'validate.product'=> \App\Http\Middleware\ValidateProduct::class,
             'validate.review'=> \App\Http\Middleware\ValidateReview::class,
-             'localize'=>\App\Http\Middleware\LocalizationMiddleware::class,
+            'validate.user'=> \App\Http\Middleware\ValidateUser::class,
+            'localize'=>\App\Http\Middleware\LocalizationMiddleware::class,
 
 ]);
 
