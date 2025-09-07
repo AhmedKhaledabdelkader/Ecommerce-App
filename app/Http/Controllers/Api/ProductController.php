@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -14,7 +15,25 @@ class ProductController extends Controller
     {
         
 
-        $products=Product::with(['categories','subcategories'])->get();
+      
+    
+        $products = Product::with(['categories','subcategories'])->get()->map(function ($product) {
+            return [
+                "id" => $product->id,
+                "productName" =>$product->productName,
+                "productDescription" => $product->productDescription,
+                "price" => $product->price,
+                "quantity" => $product->quantity,
+                "productImage" =>$product->productImage,
+                "rating_count" => $product->rating_count,
+                "rating_average" => $product->rating_average,
+                "sold_count" => $product->sold_count,
+                "categories" => $product->categories,
+                "subcategories" => $product->subcategories,
+            ];
+        });
+
+       
 
         return response()->json([
 
@@ -34,6 +53,10 @@ class ProductController extends Controller
     {
      
 
+      try{
+
+
+
         $image = $request->file('productImage');
         $imagePath= $image->store('products', 'public'); 
 
@@ -41,9 +64,9 @@ class ProductController extends Controller
 
         $product=Product::create([
 
-            "productName"=>$request->productName,
-            "productSlug"=>Str::slug($request->productName),
-            "productDescription"=>$request->productDescription,
+           "productName"        => $request->productName,         
+           "productSlug"        => Str::slug($request->input("productName.en")), 
+           "productDescription" => $request->productDescription,  
             "price"=>$request->price,
             "sku"=>$request->sku??null,
             "quantity"=>$request->quantity,
@@ -53,6 +76,10 @@ class ProductController extends Controller
             "sold_count"=>0
 
         ]);
+
+        
+    
+        
 
 
         $product->categories()->attach($request->categories);
@@ -68,6 +95,23 @@ class ProductController extends Controller
 
         ],201);
 
+
+
+
+
+
+      }catch(Exception $e){
+
+
+        return response()->json([
+
+            "status"=>"error",
+            "message"=>"an error occurred while creating the product",
+            "error"=>$e->getMessage()
+
+        ],500);
+
+      }
 
 
     }
@@ -89,11 +133,28 @@ class ProductController extends Controller
 
     }
 
+   
+    $mappedProduct=[
+        "id" => $product->id,
+        "productName" =>$product->productName,
+        "productDescription" => $product->productDescription,
+        "price" => $product->price,
+        "quantity" => $product->quantity,
+        "productImage" =>$product->productImage,
+        "rating_count" => $product->rating_count,
+        "rating_average" => $product->rating_average,
+        "sold_count" => $product->sold_count,
+        "categories" => $product->categories,
+        "subcategories" => $product->subcategories,
+    ];
+
+    
+
         return response()->json([
 
             "status"=>"success",
             "message"=>"product retrieved successfully",
-            "data"=>$product
+            "data"=>$mappedProduct
 
         ],200);
 
@@ -108,7 +169,7 @@ class ProductController extends Controller
 
 
         $product->productName=$request->productName;
-        $product->productSlug=Str::slug($request->productName);
+        $product->productSlug=Str::slug($request->productName['en']);
         $product->productDescription=$request->productDescription;
         $product->price=$request->price;
         $product->sku=$request->sku??$product->sku;
@@ -192,7 +253,23 @@ class ProductController extends Controller
         $products = Product::where('productName', 'LIKE', '%' . $query . '%')
             ->orWhere('productDescription', 'LIKE', '%' . $query . '%')
             ->with(['categories','subcategories'])
-            ->get();
+            ->get()->map(function ($product) {
+                return [
+                    "id" => $product->id,
+                    "productName" =>$product->productName,
+                    "productDescription" => $product->productDescription,
+                    "price" => $product->price,
+                    "quantity" => $product->quantity,
+                  //  "productImage" => asset('storage/'.$product->productImage),
+                  "productImage" => $product->productImage,
+                    "rating_count" => $product->rating_count,
+                    "rating_average" => $product->rating_average,
+                    "sold_count" => $product->sold_count,
+                    "categories" => $product->categories,
+                    "subcategories" => $product->subcategories,
+                ];
+            });
+    
 
         return response()->json([
             "status" => "success",

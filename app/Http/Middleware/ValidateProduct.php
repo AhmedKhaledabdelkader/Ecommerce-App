@@ -7,6 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 class ValidateProduct
 {
     /**
@@ -34,24 +35,40 @@ class ValidateProduct
             
         }
 
-        $rules=[
-
-            'productName'=>['required','string','max:255','unique:products,productName,' . $product->id],
-            'sku'         => 'nullable|string|max:255|unique:products,sku,' . $product->id,
-            'productDescription'=>['required','string'],
-            'price'=>['required','numeric','min:0'],
-            'quantity'=>['required','integer','min:0'],
-            'productImage'=>['required','image','mimes:jpeg,png,webp,jpg,gif,svg','max:2048'],
+        $rules = [
+            'productName' => ['required', 'array'],
+            'productName.en' => [
+                'required',
+                'string',
+                'max:255',
+            
+                Rule::unique('products', 'productName->en')->ignore($product->id),
+            ],
+            'productName.ar' => [
+                'required',
+                'string',
+                'max:255',
+              
+                Rule::unique('products', 'productName->ar')->ignore($product->id),
+            ],
+            'sku' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('products', 'sku')->ignore($product->id),
+            ],
+            'productDescription' => ['required', 'array'],
+            'productDescription.en' => ['required', 'string'],
+            'price' => ['required','numeric','min:0'],
+            'quantity' => ['required','integer','min:0'],
+            'productImage' => ['nullable','image','mimes:jpeg,png,webp,jpg,gif,svg','max:2048'],
             'categories' => ['required','array'],          
             'categories.*' => ['exists:categories,id'], 
             'subcategories' => ['required','array'],          
             'subcategories.*' => ['exists:subcategories,id'], 
-            'rating_count'   => ['nullable','integer','min:0'],
-            'rating_average'  => ['nullable','numeric','min:0','max:5'],
-            'sold_count'     => ['nullable','integer','min:0'],
-          
-       
-
+            'rating_count' => ['nullable','integer','min:0'],
+            'rating_average' => ['nullable','numeric','min:0','max:5'],
+            'sold_count' => ['nullable','integer','min:0'],
         ];
 
 
@@ -64,11 +81,22 @@ class ValidateProduct
 
 
 
-        $rules=[
-
-            'productName'=>['required','string','max:255','unique:products,productName'],
-            'sku'         => 'nullable|string|max:255|unique:products,sku',
-            'productDescription'=>['required','string'],
+        $rules = [
+            'productName' => ['required', 'array'],
+            'productName.en' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('products', 'productName->en'),
+            ],
+            'productName.ar' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('products', 'productName->ar'),
+            ],
+            'productDescription' => ['required', 'array'],
+            'productDescription.en' => ['required', 'string'],
             'price'=>['required','numeric','min:0'],
             'quantity'=>['required','integer','min:0'],
             'productImage'=>['required','image','mimes:jpeg,png,webp,jpg,gif,svg','max:2048'],
@@ -76,12 +104,6 @@ class ValidateProduct
             'categories.*' => ['exists:categories,id'], 
             'subcategories' => ['required','array'],          
             'subcategories.*' => ['exists:subcategories,id'], 
-            'rating_count'   => ['nullable','integer','min:0'],
-            'rating_average'  => ['nullable','numeric','min:0','max:5'],
-            'sold_count'     => ['nullable','integer','min:0'],
-          
-       
-
         ];
 
 
@@ -119,3 +141,5 @@ class ValidateProduct
         return $next($request);
     }
 }
+
+

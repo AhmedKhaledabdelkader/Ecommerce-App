@@ -18,3 +18,5 @@ Route::prefix('subcategories')->group(base_path('routes/apis/subcategory.php'));
 
 Route::prefix('products')->group(base_path('routes/apis/product.php'));
 
+
+Route::prefix('reviews')->group(base_path('routes/apis/review.php'));

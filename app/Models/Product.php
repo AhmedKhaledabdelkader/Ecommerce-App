@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use Spatie\Translatable\HasTranslations;
+
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory,HasTranslations;
 
 
     protected $fillable = [
@@ -23,6 +25,9 @@ class Product extends Model
         'sold_count'
     ];
 
+    public $translatable = ['productName', 'productDescription'];
+
+  
 
     public function categories()
     {
@@ -32,6 +37,12 @@ class Product extends Model
     public function subcategories()
     {
         return $this->belongsToMany(Subcategory::class, 'product_subcategory');
+    }
+
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
 

@@ -24,7 +24,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'validate.category' => \App\Http\Middleware\ValidateCategory::class,
             'validate.subcategory'=> \App\Http\Middleware\ValidateSubcategory::class,
              'admin'=>\App\Http\Middleware\AdminMiddleware::class,
-             'validate.product'=> \App\Http\Middleware\ValidateProduct::class
+             'validate.product'=> \App\Http\Middleware\ValidateProduct::class,
+            'validate.review'=> \App\Http\Middleware\ValidateReview::class,
+             'localize'=>\App\Http\Middleware\LocalizationMiddleware::class,
 
 ]);
 
