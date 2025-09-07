@@ -44,3 +44,18 @@ Admin can assign products to multiple categories/subcategories.
 Users can view all products filtered by category or subcategory.
 
 Role-based API access (e.g., only admins can manage categories).
+
+
+#### Techanical Notes About Project
+
+  1- I made first side localization (database) in product model.
+  2- I made second side localization (responses and messages from backend) in user model in register function.
+  3- I made the pagination concept in category model when reterieving all the categories.
+  
+
+
+
+
+
+
+
