@@ -1,5 +1,5 @@
 
-E-Commerce API (Laravel 11)
+# E-Commerce API (Laravel 11)
 
 This project is a RESTful API built with Laravel 11 for managing an e-commerce application. It provides authentication, role-based access, and product management with support for categories and subcategories.
 
@@ -48,8 +48,8 @@ Role-based API access (e.g., only admins can manage categories).
 
 #### Techanical Notes About Project
 
-  1- I made first side localization (database) in product model.
-  2- I made second side localization (responses and messages from backend) in user model in register function.
+  1- I made first side localization (database) in product model.<br>
+  2- I made second side localization (responses and messages from backend) in user model in register function.<br>
   3- I made the pagination concept in category model when reterieving all the categories.
   
 
