@@ -3,7 +3,7 @@
 
 This project is a RESTful API built with Laravel 11 for managing an e-commerce application. It provides authentication, role-based access, and product management with support for categories and subcategories.
 
-✨ Features
+### ✨ Features
 
 User Authentication (JWT/Token based with roles: admin, user,email verfication,resending email).
 
@@ -25,7 +25,7 @@ Middleware for authentication, authorization, and validation.
 
 Localization Ready for future multi-language support.
 
-🚀 Tech Stack
+### 🚀 Tech Stack
 
 Laravel 11 – PHP backend framework.
 
@@ -35,7 +35,7 @@ Sanctum – API authentication.
 
 Postman – API testing.
 
-📌 Example Use Cases
+### 📌 Example Use Cases
 
 Admin can create categories and subcategories.
 
@@ -46,7 +46,7 @@ Users can view all products filtered by category or subcategory.
 Role-based API access (e.g., only admins can manage categories).
 
 
-#### Techanical Notes About Project
+### Techanical Notes About Project
 
   1- I made first side localization (database) in product model.<br>
   2- I made second side localization (responses and messages from backend) in user model in register function.<br>
