@@ -5,7 +5,7 @@ This project is a RESTful API built with Laravel 11 for managing an e-commerce a
 
 ✨ Features
 
-User Authentication (JWT/Token based with roles: admin, user).
+User Authentication (JWT/Token based with roles: admin, user,email verfication,resending email).
 
 Categories & Subcategories
 
