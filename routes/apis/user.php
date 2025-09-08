@@ -22,6 +22,8 @@ Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])
     ->name('verification.verify');
 
 
+Route::post('/email/resend', [AuthController::class, 'resend']);
+
 
 Route::middleware(['auth.user'])->group(function(){
 

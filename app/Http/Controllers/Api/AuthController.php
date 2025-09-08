@@ -82,7 +82,6 @@ class AuthController extends Controller
     event(new Verified($user));
 
    // return response()->json(['message' => 'Email verified successfully. You can now log in.']);
-
    return view('emails.verified-success');
 
 
@@ -228,6 +227,83 @@ public function logoutAll(Request $request)
     $request->user()->tokens()->delete();
     return response()->json(['message' => 'Logged out from all devices'], 200);
 }
+
+
+
+
+
+public function resend(Request $request){
+
+
+    $validator=Validator::make($request->all(),[
+        'email' => 'required|email',
+    ]);
+
+
+    if($validator->fails()) {
+
+    
+        return response()->json([
+            "status"=>"error",
+            "message"=>"validation failed",
+            "errors"=>$validator->errors()
+
+        ],422);
+
+        
+    }
+
+
+
+    $user=User::where("email",$request->email)->first();
+
+
+    if ($user) {
+        
+       
+        if ($user->hasVerifiedEmail()) {
+            return response()->json(['message' => 'Email is already verified'], 200);
+        }
+    
+        $user->sendEmailVerificationNotification();
+    
+        return response()->json(['message' => 'Verification email resent successfully'], 200);
+
+
+
+    }
+
+    else{
+
+        return response()->json([
+
+        
+            "status"=>"failed",
+            "message"=>"there is no user with this email in the system"
+
+
+
+        ],404);
+
+
+
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
 
 
 
