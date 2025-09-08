@@ -17,6 +17,11 @@ Route::post('/register', [AuthController::class, 'register'])->middleware(["vali
 Route::post('/login', [AuthController::class, 'login']);
 
 
+Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])
+    ->middleware('signed')
+    ->name('verification.verify');
+
+
 
 Route::middleware(['auth.user'])->group(function(){
 

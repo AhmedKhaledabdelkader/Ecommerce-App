@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+
+use Illuminate\Auth\Events\Verified;
+
 
 
 class AuthController extends Controller
@@ -31,8 +35,12 @@ class AuthController extends Controller
     ]);
 
 
-    $token = $user->createToken('api_token')->plainTextToken;
+    //$token = $user->createToken('api_token')->plainTextToken;
 
+   
+
+      // Send verification email
+      $user->sendEmailVerificationNotification();
 
 
     return response()->json([
@@ -42,7 +50,7 @@ class AuthController extends Controller
 
         "user"=>$user,
 
-        "token"=>$token
+       // "token"=>$token
 
 
     ],201);
@@ -53,6 +61,35 @@ class AuthController extends Controller
 
 
     }
+
+
+
+    public function verify(Request $request, $id, $hash)
+{
+    $user = User::findOrFail($id);
+
+    if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+       // return response()->json(['message' => 'Invalid verification link'], 403);
+       return view('emails.verified-error');
+    }
+
+    if ($user->hasVerifiedEmail()) {
+       // return response()->json(['message' => 'Email already verified']);
+       return view('emails.already-verified');
+    }
+
+    $user->markEmailAsVerified();
+    event(new Verified($user));
+
+   // return response()->json(['message' => 'Email verified successfully. You can now log in.']);
+
+   return view('emails.verified-success');
+
+
+}
+
+
+
 
 
 
@@ -116,9 +153,16 @@ public function login(Request $request){
         if (Hash::check($request->password, $user->password)) {
 
 
+           
+            // check verified user
+
+            if (! $user->hasVerifiedEmail()) {
+
+                return response()->json(['message' => 'Please verify your email before logging in'], 403);
+            }
+
+
             $token = $user->createToken('api_token')->plainTextToken;
-
-
 
             return response()->json([
                 'message'=>"login to the system is successfully",
