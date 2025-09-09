@@ -19,3 +19,5 @@ Route::prefix('products')->group(base_path('routes/apis/product.php'));
 Route::prefix('reviews')->group(base_path('routes/apis/review.php'));
 
 Route::prefix('cart')->group(base_path('routes/apis/cart.php'));
+
+Route::prefix('order')->group(base_path('routes/apis/order.php'));

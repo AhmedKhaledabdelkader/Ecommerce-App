@@ -11,11 +11,29 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
    
+
+
+     /**
+     * @OA\Get(
+     *     path="/api/products",
+     *     summary="Get all products",
+     *     tags={"Products"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of products",
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/Product"))
+     *     ),
+     *     @OA\Response(
+     *        response=401,
+     *        description="Unauthorized"
+     * )
+     * )
+     */
+
+
     public function index()
     {
         
-
-      
     
         $products = Product::with(['categories','subcategories'])->get()->map(function ($product) {
             return [
@@ -47,6 +65,25 @@ class ProductController extends Controller
 
 
     }
+
+
+    /**
+ * @OA\Schema(
+ *   schema="Product",
+ *   type="object",
+ *   @OA\Property(property="id", type="integer", example=1),
+ *   @OA\Property(property="productName", type="string", example="iPhone 15"),
+ *   @OA\Property(property="price", type="number", format="float", example=999.99),
+ *   @OA\Property(property="quantity", type="integer", example=5),
+ *   @OA\Property(property="productImage", type="image",example="w4LsbQoWrES3fj1IwI7cYxwmPCnvBYcCVVM2Hubv.jpg")
+ 
+ * )
+ */
+
+
+
+
+
 
   
     public function store(Request $request)
@@ -260,8 +297,8 @@ class ProductController extends Controller
                     "productDescription" => $product->productDescription,
                     "price" => $product->price,
                     "quantity" => $product->quantity,
-                  //  "productImage" => asset('storage/'.$product->productImage),
-                  "productImage" => $product->productImage,
+                   //"productImage" => asset('storage/'.$product->productImage),
+                    "productImage" => $product->productImage,
                     "rating_count" => $product->rating_count,
                     "rating_average" => $product->rating_average,
                     "sold_count" => $product->sold_count,
