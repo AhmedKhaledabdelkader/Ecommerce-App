@@ -1,0 +1,1273 @@
+{
+	"info": {
+		"_postman_id": "ae03fc1d-ff7d-4869-82f7-465ec1ab98b0",
+		"name": "Ecommerce-Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47081626"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n    \"username\":\"ahmed\",\r\n    \"email\":\"a@a.com\",\r\n    \"phone\":\"01003674996\",\r\n    \"password\":\"Ahmed@123\",\r\n    \"password_confirmation\":\"Ahmed@123\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}user/register",
+							"host": [
+								"{{baseUrl}}user"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n    \"email\":\"a@a.com\",\r\n    \"password\":\"Ahmed@123\"\r\n    \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}user/login",
+							"host": [
+								"{{baseUrl}}user"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 9|GPRgPsTcARbc1e4sVsX1PJSyAs7D4j5u5XTQMsl453cd0759",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}user/logout",
+							"host": [
+								"{{baseUrl}}user"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignoutAll",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 10|jjmC638YWEI9CkVK3jFluaNyEafFVP5ABjr3rKpKa29c8bf9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n    \"username\":\"ahmed\",\r\n    \"email\":\"a@a.com\",\r\n    \"phone\":\"01003674996\",\r\n    \"password\":\"Ahmed@123\",\r\n    \"password_confirmation\":\"Ahmed@123\"\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}user/logoutAll",
+							"host": [
+								"{{baseUrl}}user"
+							],
+							"path": [
+								"logoutAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resendEmail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n    \"email\":\"ahmedkorya1111@gmail.com\"\r\n    \r\n    \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}user/email/resend",
+							"host": [
+								"{{baseUrl}}user"
+							],
+							"path": [
+								"email",
+								"resend"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "addCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 10|jjmC638YWEI9CkVK3jFluaNyEafFVP5ABjr3rKpKa29c8bf9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryName",
+									"value": "Electronics",
+									"type": "text"
+								},
+								{
+									"key": "categoryDescription",
+									"value": "this is electronics category",
+									"type": "text"
+								},
+								{
+									"key": "categoryImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/electronics-img.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}categories",
+							"host": [
+								"{{baseUrl}}categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 11|rPDJa6JtBEBaKCF21x7PtoV1ytMxrkDWUpln1bvQ87154460",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}categories?page=1&per_page=2",
+							"host": [
+								"{{baseUrl}}categories"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecificCategory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 10|jjmC638YWEI9CkVK3jFluaNyEafFVP5ABjr3rKpKa29c8bf9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}categories/furniture",
+							"host": [
+								"{{baseUrl}}categories"
+							],
+							"path": [
+								"furniture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCatgeory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 10|jjmC638YWEI9CkVK3jFluaNyEafFVP5ABjr3rKpKa29c8bf9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryName",
+									"value": "furniture222",
+									"type": "text"
+								},
+								{
+									"key": "categoryDescription",
+									"value": "this is furniture222 category",
+									"type": "text"
+								},
+								{
+									"key": "categoryImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/ramaz.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}categories/furniture",
+							"host": [
+								"{{baseUrl}}categories"
+							],
+							"path": [
+								"furniture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 10|jjmC638YWEI9CkVK3jFluaNyEafFVP5ABjr3rKpKa29c8bf9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryName",
+									"value": "Electronics",
+									"type": "text"
+								},
+								{
+									"key": "categoryDescription",
+									"value": "this is electronics category",
+									"type": "text"
+								},
+								{
+									"key": "categoryImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/electronics-img.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}categories/furniture222",
+							"host": [
+								"{{baseUrl}}categories"
+							],
+							"path": [
+								"furniture222"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subcategory",
+			"item": [
+				{
+					"name": "addSubcategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 10|jjmC638YWEI9CkVK3jFluaNyEafFVP5ABjr3rKpKa29c8bf9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subcategoryName",
+									"value": "Mobiles",
+									"type": "text"
+								},
+								{
+									"key": "subcategoryDescription",
+									"value": "this is mobiles subcategory",
+									"type": "text"
+								},
+								{
+									"key": "subcategoryImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/Screenshots/Screenshot 2025-05-18 224741.png"
+								},
+								{
+									"key": "categories[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "categories[]",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}subcategories",
+							"host": [
+								"{{baseUrl}}subcategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllSubcategories",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecificSubcategory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 10|jjmC638YWEI9CkVK3jFluaNyEafFVP5ABjr3rKpKa29c8bf9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subcategoryName",
+									"value": "Mobiles",
+									"type": "text"
+								},
+								{
+									"key": "subcategoryDescription",
+									"value": "this is mobiles subcategory",
+									"type": "text"
+								},
+								{
+									"key": "subcategoryImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/Screenshots/Screenshot 2025-05-18 224741.png"
+								},
+								{
+									"key": "categories[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "categories[]",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}subcategories/Mobiles",
+							"host": [
+								"{{baseUrl}}subcategories"
+							],
+							"path": [
+								"Mobiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSubcategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 10|jjmC638YWEI9CkVK3jFluaNyEafFVP5ABjr3rKpKa29c8bf9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subcategoryName",
+									"value": "Mobiles",
+									"type": "text"
+								},
+								{
+									"key": "subcategoryDescription",
+									"value": "this is mobiles subcategory1",
+									"type": "text"
+								},
+								{
+									"key": "subcategoryImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/Screenshots/Screenshot 2025-05-18 172303.png"
+								},
+								{
+									"key": "categories[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "categories[]",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}subcategories/mobiles",
+							"host": [
+								"{{baseUrl}}subcategories"
+							],
+							"path": [
+								"mobiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteSubCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 10|jjmC638YWEI9CkVK3jFluaNyEafFVP5ABjr3rKpKa29c8bf9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryName",
+									"value": "furniture222",
+									"type": "text"
+								},
+								{
+									"key": "categoryDescription",
+									"value": "this is furniture222 category",
+									"type": "text"
+								},
+								{
+									"key": "categoryImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/ramaz.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}subcategories/Mobiles",
+							"host": [
+								"{{baseUrl}}subcategories"
+							],
+							"path": [
+								"Mobiles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "addProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "productName[en]",
+									"value": "samsung ultra 213",
+									"type": "text"
+								},
+								{
+									"key": "productName[ar]",
+									"value": "هاتف محمول سامسونج 21",
+									"type": "text"
+								},
+								{
+									"key": "productDescription[en]",
+									"value": "A powerful smartphone",
+									"type": "text"
+								},
+								{
+									"key": "productDescription[ar]",
+									"value": "هاتف ذكي قوي",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "30000",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "productImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/samsung.webp"
+								},
+								{
+									"key": "categories[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "subcategories[]",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}products",
+							"host": [
+								"{{baseUrl}}products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProducts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "productName",
+									"value": "samsung ultra 21",
+									"type": "text"
+								},
+								{
+									"key": "productDescription",
+									"value": "this is my mobile",
+									"type": "text"
+								},
+								{
+									"key": "productImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/samsung.webp"
+								},
+								{
+									"key": "price",
+									"value": "30000",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "categories[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "subcategories[]",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}products",
+							"host": [
+								"{{baseUrl}}products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecificProduct",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "productName",
+									"value": "samsung ultra 21",
+									"type": "text"
+								},
+								{
+									"key": "productDescription",
+									"value": "this is my mobile",
+									"type": "text"
+								},
+								{
+									"key": "productImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/samsung.webp"
+								},
+								{
+									"key": "price",
+									"value": "30000",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "categories[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "subcategories[]",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}products/mobile-phone-samsung212",
+							"host": [
+								"{{baseUrl}}products"
+							],
+							"path": [
+								"mobile-phone-samsung212"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "productName[en]",
+									"value": "samsung ultra 213",
+									"type": "text"
+								},
+								{
+									"key": "productName[ar]",
+									"value": "موبيل سامسونح 2123",
+									"type": "text"
+								},
+								{
+									"key": "productDescription[en]",
+									"value": "this is my mobile ultra 2533",
+									"type": "text"
+								},
+								{
+									"key": "productDescription[ar]",
+									"value": "موبيل جامد جدا",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "40000",
+									"type": "text"
+								},
+								{
+									"key": "productImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/ramaz.jpg"
+								},
+								{
+									"key": "categories[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "subcategories[]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "49",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}products/samsung-ultra-213",
+							"host": [
+								"{{baseUrl}}products"
+							],
+							"path": [
+								"samsung-ultra-213"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}products/mobile-phone-samsung212",
+							"host": [
+								"{{baseUrl}}products"
+							],
+							"path": [
+								"mobile-phone-samsung212"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchProducts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "productName",
+									"value": "samsung ultra 21",
+									"type": "text"
+								},
+								{
+									"key": "productDescription",
+									"value": "this is my mobile",
+									"type": "text"
+								},
+								{
+									"key": "productImage",
+									"type": "file",
+									"src": "/C:/Users/Xpress/OneDrive/Pictures/samsung.webp"
+								},
+								{
+									"key": "price",
+									"value": "30000",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "categories[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "subcategories[]",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}products/search?q=sa",
+							"host": [
+								"{{baseUrl}}products"
+							],
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "sa"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "addReview",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n\r\n       \"product_id\":9,\r\n       \"rating\":3,\r\n       \"comment\":\"i love this product more\"\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}reviews",
+							"host": [
+								"{{baseUrl}}reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecficProductReviews",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n\r\n       \"product_id\":9,\r\n       \"rating\":3,\r\n       \"comment\":\"i love this product more\"\r\n\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}reviews/product-reviews/9",
+							"host": [
+								"{{baseUrl}}reviews"
+							],
+							"path": [
+								"product-reviews",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteReview",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n\r\n       \"product_id\":9,\r\n       \"rating\":3,\r\n       \"comment\":\"i love this product more\"\r\n\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}reviews/1",
+							"host": [
+								"{{baseUrl}}reviews"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "createCart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n    \"email\":\"a@a.com\",\r\n    \"password\":\"Ahmed@123\"\r\n    \r\n    }"
+						},
+						"url": {
+							"raw": "{{baseUrl}}cart",
+							"host": [
+								"{{baseUrl}}cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addToCart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n   \r\n   \"product_id\":12,\r\n   \"quantity\":3\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}cart/add/1",
+							"host": [
+								"{{baseUrl}}cart"
+							],
+							"path": [
+								"add",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProductFromCart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}cart/remove/1/12",
+							"host": [
+								"{{baseUrl}}cart"
+							],
+							"path": [
+								"remove",
+								"1",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCarts",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecificCart",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "clearCart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}cart/clear/1",
+							"host": [
+								"{{baseUrl}}cart"
+							],
+							"path": [
+								"clear",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "makeOrder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n\r\n\"cart_id\":1,\r\n\"shipping\":\"cairo,Egypt\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}order/",
+							"host": [
+								"{{baseUrl}}order"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancelOrder",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n\r\n\"cart_id\":1,\r\n\"shipping\":\"cairo,Egypt\"\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}order/cancel/2",
+							"host": [
+								"{{baseUrl}}order"
+							],
+							"path": [
+								"cancel",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "processOrder",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}order/process/3",
+							"host": [
+								"{{baseUrl}}order"
+							],
+							"path": [
+								"process",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "shippedOrder",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|L8yIk7mqmYcfhWsw6FdVlp8Pu7SnZLqkqwrtwn5S52d51dfb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n{\r\n\r\n\"cart_id\":1,\r\n\"shipping\":\"cairo,Egypt\"\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}order/ship/3",
+							"host": [
+								"{{baseUrl}}order"
+							],
+							"path": [
+								"ship",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
